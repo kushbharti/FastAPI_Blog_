@@ -1,2 +1,61 @@
+# -----------------------------
+# Python & FastAPI Ignored Files
+# -----------------------------
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+*.pdb
+*$py.class
+
+# Virtual environment
+venv/
+env/
+.venv/
+.env/
+ENV/
+
+# FastAPI + Uvicorn related
+*.log
+
+# SQLite database files
+*.db
+blog.db
+*.sqlite3
+
+# Sensevite data (all cache, storage, sessions)
+sensevite/
+sensevite_data/
+*.sensevite
+*.svdata
+
+# Editor folders
+.vscode/
+.idea/
+
+# Environment settings
 .env
-/__pycache__
+*.env
+
+# PyTest & coverage
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+pytest_cache/
+nosetests.xml
+coverage.xml
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Other OS-generated files
+.DS_Store
+Thumbs.db
