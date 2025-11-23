@@ -13,9 +13,7 @@ router = APIRouter(
 get_db = database.get_db
 
 
-
 ####### * Users ############
-
 
 ## ? Get all Users -------
 
