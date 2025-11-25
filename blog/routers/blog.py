@@ -1,8 +1,9 @@
 from fastapi import APIRouter, Depends, status
-from .. import schemas, database
+from blog import schemas, database
 from typing import List
 from sqlalchemy.orm import Session
 from ..repository import blog
+from ..OAuth2 import get_current_user
 
 router = APIRouter(
     prefix='/v2',
@@ -17,14 +18,14 @@ get_db = database.get_db
 ## ? Get all Blogs ------
 
 @router.get('/get-all-blogs', response_model=List[schemas.ShowBlog])
-def get_all_blogs(db: Session = Depends(get_db)):
+def get_all_blogs(db: Session = Depends(get_db), current_user : schemas.User = Depends(get_current_user)):
 
     return blog.get_blogs(db)
 
 ## ? Create Blog ------
 
 @router.post('/create-blog', status_code=status.HTTP_201_CREATED )
-def create_blog(request: schemas.Blog, db: Session = Depends(get_db)):
+def create_blog(request: schemas.Blog, db: Session = Depends(get_db), current_user : schemas.User = Depends(get_current_user)):
     
     return blog.create_blog(request, db)
 
@@ -32,7 +33,7 @@ def create_blog(request: schemas.Blog, db: Session = Depends(get_db)):
 ## ? Delete Blog ----- 
 
 @router.delete('/delete-blog/{id}', status_code=status.HTTP_204_NO_CONTENT )
-def delete_blog(id: int, db: Session = Depends(get_db)):
+def delete_blog(id: int, db: Session = Depends(get_db), current_user : schemas.User = Depends(get_current_user)):
     
     return blog.destroy(id, db)
 
@@ -40,7 +41,7 @@ def delete_blog(id: int, db: Session = Depends(get_db)):
 ##  ? Update Blog -----
 
 @router.put('/update-blog/{id}',status_code=status.HTTP_202_ACCEPTED)
-def update_blog(id: int, request: schemas.Blog, db: Session = Depends(get_db) ):
+def update_blog(id: int, request: schemas.Blog, db: Session = Depends(get_db), current_user : schemas.User = Depends(get_current_user) ):
     
     return blog.update_blog(id, request, db)
 
@@ -48,7 +49,7 @@ def update_blog(id: int, request: schemas.Blog, db: Session = Depends(get_db) ):
 ## ? Get an indiviusal Blog -----
 
 @router.get('/get-blog/{id}',status_code=status.HTTP_200_OK, response_model=schemas.ShowBlog )
-def get_blog(id: int, db: Session = Depends(get_db)):
+def get_blog(id: int, db: Session = Depends(get_db), current_user : schemas.User = Depends(get_current_user)):
     
     return blog.get_a_blog(id, db)
 
