@@ -46,6 +46,11 @@ with secured endpoints using JWT-based authentication.
     <td>User Login (returns access token)</td>
   </tr>
 </table>
+<hr />
+
+<img width="1627" height="799" alt="Screenshot 2026-01-07 224239" src="https://github.com/user-attachments/assets/309a3ea7-924e-471b-bf62-cc00a5599265" />
+
+
 
 <hr />
 
