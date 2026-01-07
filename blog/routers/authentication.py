@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends, status, HTTPException
-from blog import schemas, database, models, token
+from blog import jwt_token, schemas, database, models
 from sqlalchemy.orm import Session
 from blog.hashing import Hash
 from datetime import timedelta
@@ -25,8 +25,8 @@ def login(request: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Incorrect Password')
     
     
-    access_token_expires = timedelta(minutes=token.ACCESS_TOKEN_EXPIRE_MINUTES)
-    access_token = token.create_access_token(
+    access_token_expires = timedelta(minutes=jwt_token.ACCESS_TOKEN_EXPIRE_MINUTES)
+    access_token = jwt_token.create_access_token(
         data={"sub": user.username}, expires_delta=access_token_expires
     )
     return schemas.Token(access_token=access_token, token_type="bearer")
