@@ -1,7 +1,7 @@
 from fastapi import Depends, HTTPException, status
 from typing import Annotated
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
-from . import jwt_token
+from blog import jwt_token
 
 
 

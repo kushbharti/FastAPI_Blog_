@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta, timezone
 import jwt
-from . import schemas
+from blog import schemas
 from jwt.exceptions import InvalidTokenError
 
 
